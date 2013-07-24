@@ -64,5 +64,5 @@ module.exports = (robot) ->
     authedRequest message, '/graph/snapshot', 'get', {metric_query: query, start: start, end: end}, (err, res, body) ->
       json = JSON.parse(body)
       snapshot = json.snapshot_url.replace(/https:\/\/s3.amazonaws.com/, "http://datadog.zenjoy.be")
-      sleep.sleep(1)
+      sleep.sleep(2)
       message.send(snapshot)
