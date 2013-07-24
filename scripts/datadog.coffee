@@ -42,16 +42,16 @@ module.exports = (robot) ->
   robot.respond /graph me -(\d+)(s|h|min|d) (.*)(\(.*\))?/i, (message) ->
     time = parseInt( message.match[1], 10 )
     unit = message.match[2]
-    query = message.match[3]
+    metric = message.match[3]
     scope = message.match[4]
     scope = "*" unless scope?
-    query = "#{query}{#{scope}}"
 
-    switch query
+    switch metric
       when "load"    then query = "system.load.1{#{scope}},system.load.5{#{scope}},system.load.15{#{scope}}"
       when "network" then query = "sum:system.net.bytes_rcvd{#{scope}},sum:system.net.bytes_sent{#{scope}}"
       when "mongodb" then query = "mongodb.opcounters.insertps{#{scope}},mongodb.opcounters.deleteps{#{scope}},mongodb.opcounters.updateps{#{scope}},mongodb.opcounters.queryps{#{scope}},mongodb.opcounters.getmoreps{#{scope}}"
       when "haproxy" then query = "sum:haproxy.backend.bytes.out_rate{#{scope}}"
+      else query = "#{metric}{#{scope}}"
 
     switch unit
       when "min" then time = time * 60
