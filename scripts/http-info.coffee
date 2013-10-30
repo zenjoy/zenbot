@@ -35,7 +35,7 @@ module.exports = (robot) ->
     # filter out some common files from trying
     ignore = url.match(/\.(png|jpg|jpeg|gif|txt|zip|tar\.bz|js|css)/)
 
-    ignorePattern = "zenjoy|github|dribbble|zendesk|youtube|copperegg|codeclimate"
+    ignorePattern = "zenjoy|github|dribbble|zendesk|youtube|copperegg|codeclimate|datadog"
     if !ignore && ignorePattern
       ignore = url.match(ignorePattern)
 

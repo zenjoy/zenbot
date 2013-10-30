@@ -39,7 +39,7 @@ module.exports = (robot) ->
 
       message.send(response)
 
-  robot.respond /graph me -(\d+)(s|h|min|d) (.*)(\(.*\))?/i, (message) ->
+  robot.respond /graph me -(\d+)(s|h|min|d) ([^\(]*)\(?([^\)]*)?\)?/i, (message) ->
     time = parseInt( message.match[1], 10 )
     unit = message.match[2]
     metric = message.match[3]
