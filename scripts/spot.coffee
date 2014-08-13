@@ -10,8 +10,8 @@
 # Commands:
 #   hubot play! - Plays current playlist or song.
 #   hubot pause - Pause the music.
-#   hubot play next - Plays the next song.
-#   hubot play back - Plays the previous song.
+#   hubot next - Plays the next song.
+#   hubot again - Plays the previous song.
 #   hubot playing? - Returns the currently-played song.
 #   hubot play <song> - Play a particular song. This plays the first most popular result.
 #   hubot volume? - Returns the current volume level.
@@ -50,7 +50,7 @@ module.exports = (robot) ->
     spotRequest message, '/next', 'put', {}, (err, res, body) ->
       message.send("#{body} (continue)")
   
-  robot.respond /back/i, (message) ->
+  robot.respond /again/i, (message) ->
     spotRequest message, '/back', 'put', {}, (err, res, body) ->
       message.send("#{body} (continue)")
 
